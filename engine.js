@@ -827,35 +827,30 @@
         if (!styleEl) {
           styleEl = document.createElement("style");
           styleEl.id = "mb-binarybeaxt-wm-style";
-          styleEl.textContent = ""
-            + "#mb-binarybeaxt-wm{position:fixed;inset:0;z-index:2147483646;pointer-events:none;display:flex;align-items:center;justify-content:center;overflow:hidden;opacity:0;transition:opacity .5s ease;}"
-            + "#mb-binarybeaxt-wm.show{opacity:1;}"
-            + "#mb-binarybeaxt-wm .mb-wm-layer{position:absolute;inset:-20%;display:flex;flex-wrap:wrap;align-content:center;justify-content:center;gap:48px 64px;transform:rotate(-22deg);opacity:.9;}"
-            + "#mb-binarybeaxt-wm .mb-wm-text{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;font-size:clamp(42px,7.2vw,96px);font-weight:800;letter-spacing:.12em;color:rgba(255,255,255,.055);text-shadow:0 0 48px rgba(239,68,68,.12);white-space:nowrap;user-select:none;-webkit-user-select:none;animation:mbWmDrift 9s ease-in-out infinite;}"
-            + "#mb-binarybeaxt-wm .mb-wm-text:nth-child(even){animation-delay:-4.5s;color:rgba(239,68,68,.05);}"
-            + "#mb-binarybeaxt-wm .mb-wm-hero{position:relative;z-index:1;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;font-size:clamp(36px,5.5vw,78px);font-weight:800;letter-spacing:.14em;color:rgba(255,255,255,.08);text-shadow:0 2px 24px rgba(0,0,0,.25),0 0 60px rgba(239,68,68,.18);transform:rotate(-18deg);animation:mbWmPulse 5.5s ease-in-out infinite;user-select:none;}"
-            + "@keyframes mbWmDrift{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}"
-            + "@keyframes mbWmPulse{0%,100%{opacity:.75;transform:rotate(-18deg) scale(1)}50%{opacity:1;transform:rotate(-18deg) scale(1.04)}}";
           document.documentElement.appendChild(styleEl);
         }
+        styleEl.textContent = ""
+          + "#mb-binarybeaxt-wm{position:fixed;inset:0;z-index:2147483646;pointer-events:none;display:flex;align-items:center;justify-content:center;overflow:hidden;opacity:0;transition:opacity .45s ease;}"
+          + "#mb-binarybeaxt-wm.show{opacity:1;}"
+          + "#mb-binarybeaxt-wm .mb-wm-hero{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;font-size:clamp(44px,6.5vw,92px);font-weight:800;letter-spacing:.16em;white-space:nowrap;user-select:none;-webkit-user-select:none;"
+          + "background:linear-gradient(180deg,#fca5a5 0%,#ef4444 50%,#b91c1c 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;"
+          + "opacity:.55;filter:drop-shadow(0 4px 22px rgba(239,68,68,.45));transform:rotate(-18deg);animation:mbWmPulse 5.5s ease-in-out infinite;}"
+          + "@keyframes mbWmPulse{0%,100%{opacity:.48;transform:rotate(-18deg) scale(1)}50%{opacity:.62;transform:rotate(-18deg) scale(1.03)}}";
         let wm = document.getElementById("mb-binarybeaxt-wm");
         if (!wm) {
           wm = document.createElement("div");
           wm.id = "mb-binarybeaxt-wm";
-          const layer = document.createElement("div");
-          layer.className = "mb-wm-layer";
-          for (let i = 0; i < 12; i++) {
-            const t = document.createElement("div");
-            t.className = "mb-wm-text";
-            t.textContent = "@binarybeaxtofficial";
-            layer.appendChild(t);
-          }
           const hero = document.createElement("div");
           hero.className = "mb-wm-hero";
           hero.textContent = "@binarybeaxtofficial";
-          wm.appendChild(layer);
           wm.appendChild(hero);
           document.body.appendChild(wm);
+        } else {
+          wm.innerHTML = "";
+          const hero = document.createElement("div");
+          hero.className = "mb-wm-hero";
+          hero.textContent = "@binarybeaxtofficial";
+          wm.appendChild(hero);
         }
         return wm;
       }
