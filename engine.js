@@ -829,29 +829,32 @@
           styleEl.id = "mb-binarybeaxt-wm-style";
           document.documentElement.appendChild(styleEl);
         }
+        // DEMO-style: one clean centered mark, no gradient/clip/filter (those distort on Quotex)
         styleEl.textContent = ""
-          + "#mb-binarybeaxt-wm{position:fixed;inset:0;z-index:2147483646;pointer-events:none;display:flex;align-items:center;justify-content:center;overflow:hidden;opacity:0;transition:opacity .45s ease;}"
-          + "#mb-binarybeaxt-wm.show{opacity:1;}"
-          + "#mb-binarybeaxt-wm .mb-wm-hero{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;font-size:clamp(44px,6.5vw,92px);font-weight:800;letter-spacing:.16em;white-space:nowrap;user-select:none;-webkit-user-select:none;"
-          + "background:linear-gradient(180deg,#fca5a5 0%,#ef4444 50%,#b91c1c 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;"
-          + "opacity:.55;filter:drop-shadow(0 4px 22px rgba(239,68,68,.45));transform:rotate(-18deg);animation:mbWmPulse 5.5s ease-in-out infinite;}"
-          + "@keyframes mbWmPulse{0%,100%{opacity:.48;transform:rotate(-18deg) scale(1)}50%{opacity:.62;transform:rotate(-18deg) scale(1.03)}}";
+          + "#mb-binarybeaxt-wm{"
+          + "all:initial;position:fixed!important;left:0!important;top:0!important;right:0!important;bottom:0!important;"
+          + "width:100%!important;height:100%!important;z-index:2147483646!important;pointer-events:none!important;"
+          + "display:flex!important;align-items:center!important;justify-content:center!important;"
+          + "opacity:0;transition:opacity .4s ease;overflow:hidden!important;}"
+          + "#mb-binarybeaxt-wm.show{opacity:1!important;}"
+          + "#mb-binarybeaxt-wm .mb-wm-hero{"
+          + "all:initial;display:block!important;pointer-events:none!important;user-select:none!important;"
+          + "font-family:Arial,Helvetica,sans-serif!important;font-size:min(7.5vw,72px)!important;font-weight:700!important;"
+          + "letter-spacing:3px!important;line-height:1!important;white-space:nowrap!important;"
+          + "color:rgba(239,68,68,.20)!important;-webkit-text-fill-color:rgba(239,68,68,.20)!important;"
+          + "-webkit-text-stroke:1px rgba(252,165,165,.18)!important;"
+          + "transform:rotate(-25deg)!important;transform-origin:center center!important;}";
         let wm = document.getElementById("mb-binarybeaxt-wm");
         if (!wm) {
           wm = document.createElement("div");
           wm.id = "mb-binarybeaxt-wm";
-          const hero = document.createElement("div");
-          hero.className = "mb-wm-hero";
-          hero.textContent = "@binarybeaxtofficial";
-          wm.appendChild(hero);
           document.body.appendChild(wm);
-        } else {
-          wm.innerHTML = "";
-          const hero = document.createElement("div");
-          hero.className = "mb-wm-hero";
-          hero.textContent = "@binarybeaxtofficial";
-          wm.appendChild(hero);
         }
+        wm.innerHTML = "";
+        const hero = document.createElement("span");
+        hero.className = "mb-wm-hero";
+        hero.textContent = "@binarybeaxtofficial";
+        wm.appendChild(hero);
         return wm;
       }
       function setChartWatermark(show) {
